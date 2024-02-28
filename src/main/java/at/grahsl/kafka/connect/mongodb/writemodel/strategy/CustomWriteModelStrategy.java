@@ -9,13 +9,6 @@ import com.mongodb.client.model.WriteModel;
 
 import org.apache.kafka.connect.errors.DataException;
 
-/**
- * @author GME
- * @version V1.0
- * @Package at.grahsl.kafka.connect.mongodb.writemodel.strategy
- * @date 2024/2/28 17:29
- * @Copyright © 2014-2023 码克布克网络工作室
- */
 public class CustomWriteModelStrategy implements WriteModelStrategy{
     private static final UpdateOptions UPDATE_OPTIONS = new UpdateOptions().upsert(true);
 
