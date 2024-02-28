@@ -20,6 +20,9 @@ public class CustomWriteModelStrategy implements WriteModelStrategy{
         BsonDocument vd = document.getValueDoc().orElseThrow(
                 () -> new DataException("Error: cannot build the WriteModel since the value document was missing unexpectedly"));
 
+        System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+        System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+        System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111111111111111");
         // extract message from incoming document
         BsonString message = new BsonString("");
         if (vd.containsKey("message")) {
