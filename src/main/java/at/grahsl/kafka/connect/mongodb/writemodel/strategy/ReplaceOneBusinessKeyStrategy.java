@@ -17,9 +17,6 @@ public class ReplaceOneBusinessKeyStrategy implements WriteModelStrategy {
     @Override
     public WriteModel<BsonDocument> createWriteModel(SinkDocument document) {
 
-        System.out.println("222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-        System.out.println("222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-        System.out.println("222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
         BsonDocument vd = document.getValueDoc().orElseThrow(
                 () -> new DataException("error: cannot build the WriteModel since"
                         + " the value document was missing unexpectedly")
