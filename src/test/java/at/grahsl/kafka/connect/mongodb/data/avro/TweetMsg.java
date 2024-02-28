@@ -5,12 +5,13 @@
  */
 package at.grahsl.kafka.connect.mongodb.data.avro;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
-@SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -614364705592652792L;
@@ -26,7 +27,16 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
       new BinaryMessageDecoder<TweetMsg>(MODEL$, SCHEMA$);
 
   /**
+   * Return the BinaryMessageEncoder instance used by this class.
+   * @return the message encoder used by this class
+   */
+  public static BinaryMessageEncoder<TweetMsg> getEncoder() {
+    return ENCODER;
+  }
+
+  /**
    * Return the BinaryMessageDecoder instance used by this class.
+   * @return the message decoder used by this class
    */
   public static BinaryMessageDecoder<TweetMsg> getDecoder() {
     return DECODER;
@@ -35,17 +45,27 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
   /**
    * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
+   * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
   public static BinaryMessageDecoder<TweetMsg> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<TweetMsg>(MODEL$, SCHEMA$, resolver);
   }
 
-  /** Serializes this TweetMsg to a ByteBuffer. */
+  /**
+   * Serializes this TweetMsg to a ByteBuffer.
+   * @return a buffer holding the serialized data for this instance
+   * @throws java.io.IOException if this instance could not be serialized
+   */
   public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
     return ENCODER.encode(this);
   }
 
-  /** Deserializes a TweetMsg from a ByteBuffer. */
+  /**
+   * Deserializes a TweetMsg from a ByteBuffer.
+   * @param b a byte buffer holding serialized data for an instance of this class
+   * @return a TweetMsg instance decoded from the given buffer
+   * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
+   */
   public static TweetMsg fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
@@ -74,6 +94,7 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
     this.hashtags = hashtags;
   }
 
+  public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
@@ -100,15 +121,16 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
    * Gets the value of the '_id' field.
    * @return The value of the '_id' field.
    */
-  public java.lang.Long getId$1() {
+  public long getId$1() {
     return _id;
   }
+
 
   /**
    * Sets the value of the '_id' field.
    * @param value the value to set.
    */
-  public void setId$1(java.lang.Long value) {
+  public void setId$1(long value) {
     this._id = value;
   }
 
@@ -119,6 +141,7 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
   public java.lang.String getText() {
     return text;
   }
+
 
   /**
    * Sets the value of the 'text' field.
@@ -135,6 +158,7 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
   public java.util.List<java.lang.String> getHashtags() {
     return hashtags;
   }
+
 
   /**
    * Sets the value of the 'hashtags' field.
@@ -158,7 +182,11 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
    * @return A new TweetMsg RecordBuilder
    */
   public static at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder newBuilder(at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder other) {
-    return new at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder(other);
+    if (other == null) {
+      return new at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder();
+    } else {
+      return new at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder(other);
+    }
   }
 
   /**
@@ -167,7 +195,11 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
    * @return A new TweetMsg RecordBuilder
    */
   public static at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder newBuilder(at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg other) {
-    return new at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder(other);
+    if (other == null) {
+      return new at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder();
+    } else {
+      return new at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg.Builder(other);
+    }
   }
 
   /**
@@ -193,15 +225,15 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
       super(other);
       if (isValidValue(fields()[0], other._id)) {
         this._id = data().deepCopy(fields()[0].schema(), other._id);
-        fieldSetFlags()[0] = true;
+        fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
       if (isValidValue(fields()[1], other.text)) {
         this.text = data().deepCopy(fields()[1].schema(), other.text);
-        fieldSetFlags()[1] = true;
+        fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
       if (isValidValue(fields()[2], other.hashtags)) {
         this.hashtags = data().deepCopy(fields()[2].schema(), other.hashtags);
-        fieldSetFlags()[2] = true;
+        fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
     }
 
@@ -210,7 +242,7 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
      * @param other The existing instance to copy.
      */
     private Builder(at.grahsl.kafka.connect.mongodb.data.avro.TweetMsg other) {
-            super(SCHEMA$);
+      super(SCHEMA$);
       if (isValidValue(fields()[0], other._id)) {
         this._id = data().deepCopy(fields()[0].schema(), other._id);
         fieldSetFlags()[0] = true;
@@ -229,9 +261,10 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
       * Gets the value of the '_id' field.
       * @return The value.
       */
-    public java.lang.Long getId$1() {
+    public long getId$1() {
       return _id;
     }
+
 
     /**
       * Sets the value of the '_id' field.
@@ -271,6 +304,7 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
       return text;
     }
 
+
     /**
       * Sets the value of the 'text' field.
       * @param value The value of 'text'.
@@ -309,6 +343,7 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
     public java.util.List<java.lang.String> getHashtags() {
       return hashtags;
     }
+
 
     /**
       * Sets the value of the 'hashtags' field.
@@ -350,6 +385,8 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
         record.text = fieldSetFlags()[1] ? this.text : (java.lang.String) defaultValue(fields()[1]);
         record.hashtags = fieldSetFlags()[2] ? this.hashtags : (java.util.List<java.lang.String>) defaultValue(fields()[2]);
         return record;
+      } catch (org.apache.avro.AvroMissingFieldException e) {
+        throw e;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
@@ -374,4 +411,96 @@ public class TweetMsg extends org.apache.avro.specific.SpecificRecordBase implem
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
+  @Override protected boolean hasCustomCoders() { return true; }
+
+  @Override public void customEncode(org.apache.avro.io.Encoder out)
+    throws java.io.IOException
+  {
+    out.writeLong(this._id);
+
+    out.writeString(this.text);
+
+    long size0 = this.hashtags.size();
+    out.writeArrayStart();
+    out.setItemCount(size0);
+    long actualSize0 = 0;
+    for (java.lang.String e0: this.hashtags) {
+      actualSize0++;
+      out.startItem();
+      out.writeString(e0);
+    }
+    out.writeArrayEnd();
+    if (actualSize0 != size0)
+      throw new java.util.ConcurrentModificationException("Array-size written was " + size0 + ", but element count was " + actualSize0 + ".");
+
+  }
+
+  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
+    throws java.io.IOException
+  {
+    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
+    if (fieldOrder == null) {
+      this._id = in.readLong();
+
+      this.text = in.readString();
+
+      long size0 = in.readArrayStart();
+      java.util.List<java.lang.String> a0 = this.hashtags;
+      if (a0 == null) {
+        a0 = new SpecificData.Array<java.lang.String>((int)size0, SCHEMA$.getField("hashtags").schema());
+        this.hashtags = a0;
+      } else a0.clear();
+      SpecificData.Array<java.lang.String> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.String>)a0 : null);
+      for ( ; 0 < size0; size0 = in.arrayNext()) {
+        for ( ; size0 != 0; size0--) {
+          java.lang.String e0 = (ga0 != null ? ga0.peek() : null);
+          e0 = in.readString();
+          a0.add(e0);
+        }
+      }
+
+    } else {
+      for (int i = 0; i < 3; i++) {
+        switch (fieldOrder[i].pos()) {
+        case 0:
+          this._id = in.readLong();
+          break;
+
+        case 1:
+          this.text = in.readString();
+          break;
+
+        case 2:
+          long size0 = in.readArrayStart();
+          java.util.List<java.lang.String> a0 = this.hashtags;
+          if (a0 == null) {
+            a0 = new SpecificData.Array<java.lang.String>((int)size0, SCHEMA$.getField("hashtags").schema());
+            this.hashtags = a0;
+          } else a0.clear();
+          SpecificData.Array<java.lang.String> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.String>)a0 : null);
+          for ( ; 0 < size0; size0 = in.arrayNext()) {
+            for ( ; size0 != 0; size0--) {
+              java.lang.String e0 = (ga0 != null ? ga0.peek() : null);
+              e0 = in.readString();
+              a0.add(e0);
+            }
+          }
+          break;
+
+        default:
+          throw new java.io.IOException("Corrupt ResolvingDecoder.");
+        }
+      }
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
