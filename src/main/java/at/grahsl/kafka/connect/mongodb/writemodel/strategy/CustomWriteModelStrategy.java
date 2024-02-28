@@ -57,9 +57,9 @@ public class CustomWriteModelStrategy implements WriteModelStrategy{
 //            throw new DataException("error: cannot build the WriteModel since"
 //                    + " the value document does not contain an _id field of type BsonDocument"
 //                    + " which holds the business key fields");
-            vd.put(DBCollection.ID_FIELD_NAME,vd.get("id"));
+            businessKey = vd.get("id");
         }
-//        vd.remove(DBCollection.ID_FIELD_NAME);
+        vd.remove(DBCollection.ID_FIELD_NAME);
         return new ReplaceOneModel<>((BsonDocument)businessKey, vd, UPDATE_OPTIONS);
 
     }
