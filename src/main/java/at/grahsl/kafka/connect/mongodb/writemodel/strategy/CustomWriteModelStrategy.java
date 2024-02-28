@@ -60,7 +60,7 @@ public class CustomWriteModelStrategy implements WriteModelStrategy{
             businessKey = vd.get("id");
         }
         vd.remove(DBCollection.ID_FIELD_NAME);
-        return new ReplaceOneModel<>((BsonDocument)businessKey, vd, UPDATE_OPTIONS);
+        return new ReplaceOneModel<>(new BsonDocument(DBCollection.ID_FIELD_NAME,businessKey), vd, UPDATE_OPTIONS);
 
     }
 }
