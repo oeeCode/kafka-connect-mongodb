@@ -585,7 +585,9 @@ public class MongoDbSinkConnectorConfigTest {
         HashMap<String,Class> candidates = new HashMap<String,Class>() {{
             put("",ReplaceOneDefaultStrategy.class);
             put(DeleteOneDefaultStrategy.class.getName(),DeleteOneDefaultStrategy.class);
+            put(DeleteOneDefaultStrategy.class.getName(),DeleteOneDefaultStrategy.class);
             put(ReplaceOneBusinessKeyStrategy.class.getName(),ReplaceOneBusinessKeyStrategy.class);
+            put(CustomWriteModelStrategy.class.getName(),CustomWriteModelStrategy.class);
             put(ReplaceOneDefaultStrategy.class.getName(),ReplaceOneDefaultStrategy.class);
             put(UpdateOneTimestampsStrategy.class.getName(),UpdateOneTimestampsStrategy.class);
         }};
@@ -622,6 +624,7 @@ public class MongoDbSinkConnectorConfigTest {
             put("collection-2", ReplaceOneBusinessKeyStrategy.class);
             put("collection-3", UpdateOneTimestampsStrategy.class);
             put("collection-4", DeleteOneDefaultStrategy.class);
+            put("collection-5", CustomWriteModelStrategy.class);
         }};
 
         HashMap<String,String> map = new HashMap<>();
